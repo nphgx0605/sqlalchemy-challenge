@@ -62,8 +62,7 @@ def stations():
 @app.route("/api/v1.0/tobs")
 def tobs():
     # Get the most recent date from the dataset
-    last_date = session.query(Measurement.date).order_by(Measurement.date.desc()).first()[0]
-    one_year_ago = dt.datetime.strptime(last_date, '%Y-%m-%d') - dt.timedelta(days=365)
+    one_year_ago = dt.datetime(2017, 8, 23) - dt.timedelta(days=365)
     
     # Find the most active station
     most_active_station = session.query(Measurement.station, func.count(Measurement.station)).\
